@@ -1,0 +1,25 @@
+{
+  "name": "dust-phaser-plugin",
+  "version": "0.0.1",
+  "description": "a Phaser 3 plugin for floating dust particles",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Quinten/dust-phaser-plugin.git"
+  },
+  "keywords": [
+    "phaser",
+    "phaserjs",
+    "html5-game-development",
+    "phaser-plugin"
+  ],
+  "author": "Quinten Clause",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Quinten/dust-phaser-plugin/issues"
+  },
+  "homepage": "https://github.com/Quinten/dust-phaser-plugin#readme"
+}
