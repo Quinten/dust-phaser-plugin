@@ -5,14 +5,13 @@ class DustSprite extends Phaser.GameObjects.Image
     constructor(scene, x, y)
     {
         super(scene, x, y, "dust");
+
         this.scene = scene;
-        //scene.physics.world.enable(this);
         scene.add.existing(this);
         scene.events.on("update", this.update, this);
         scene.events.once("shutdown", this.destroy, this);
 
         this.behavior = {};
-
         this.behavior.position = new Phaser.Math.Vector2(x, y);
         this.behavior.steeringForce = new Phaser.Math.Vector2(0, 0);
         this.behavior.maxForce = 1;
@@ -28,11 +27,6 @@ class DustSprite extends Phaser.GameObjects.Image
 
     update(time, deltaTime)
     {
-        /*
-        if (!this.body) {
-            return;
-        }
-        */
         let _ = this.behavior;
         let center = _.velocity.clone().normalize().multiply(new Phaser.Math.Vector2(_.wanderDistance, _.wanderDistance));
         let offset = new Phaser.Math.Vector2(1, 0);
@@ -45,7 +39,6 @@ class DustSprite extends Phaser.GameObjects.Image
         _.steeringForce = _.steeringForce.add(force);
 
         // steering
-        //_.steeringForce.limit(_.maxForce);
         if (_.steeringForce.lengthSq() > _.maxForce * _.maxForce) {
             _.steeringForce.normalize().multiply(new Phaser.Math.Vector2(_.maxForce, _.maxForce));
         }
@@ -54,16 +47,15 @@ class DustSprite extends Phaser.GameObjects.Image
         _.steeringForce = new Phaser.Math.Vector2(0, 0);
 
         // velocity
-        //_.velocity.limit(_.maxSpeed);
         if (_.velocity.lengthSq() > _.maxSpeed * _.maxSpeed) {
             _.velocity.normalize().multiply(new Phaser.Math.Vector2(_.maxSpeed, _.maxSpeed));
         }
         _.position = _.position.add(_.velocity);
 
+        // subtract camera velocity
         let newCameraPosition = this.scene.cameras.main.midPoint.clone();
         let cameraVelocity = newCameraPosition.clone().subtract(_.cameraPosition);
         _.cameraPosition = newCameraPosition;
-
         _.position = _.position.subtract(cameraVelocity);
 
         // wrapping
@@ -72,14 +64,10 @@ class DustSprite extends Phaser.GameObjects.Image
         if (_.position.y > this.scene.cameras.main.height) _.position.y = 0;
         if (_.position.y < 0) _.position.y = this.scene.cameras.main.height;
 
-        //console.log(_.position.x);
         // set position
         this.x = _.position.x;
         this.y = _.position.y;
 
-        //console.log(this.x);
-
-        // ...
     }
 
     destroy()

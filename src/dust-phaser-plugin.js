@@ -29,10 +29,13 @@ class DustPhaserPlugin extends Phaser.Plugins.ScenePlugin
 
     addDust()
     {
-        let dust = new DustSprite(this.scene, 10, 10);
-        let container = this.scene.add.container(0, 0, [dust]);
+        let dusts = [];
+        for (let d = 0; d < 8; d++) {
+            let dust = new DustSprite(this.scene, Math.floor(Math.random() * this.scene.cameras.main.width), Math.floor(Math.random() * this.scene.cameras.main.height));
+            dusts.push(dust);
+        }
+        let container = this.scene.add.container(0, 0, dusts);
         container.setScrollFactor(0);
-        //console.log(this.scene);
     }
 
     boot()
