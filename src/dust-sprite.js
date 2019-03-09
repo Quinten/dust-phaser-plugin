@@ -1,6 +1,6 @@
 import Phaser from "phaser";
 
-class DustSprite extends Phaser.GameObjects.Sprite
+class DustSprite extends Phaser.GameObjects.Image
 {
     constructor(scene, x, y)
     {
@@ -17,6 +17,7 @@ class DustSprite extends Phaser.GameObjects.Sprite
         if (!this.body) {
             return;
         }
+        //console.log(this.scene.sys.textures.exists("dust"));
 
         // ...
     }
