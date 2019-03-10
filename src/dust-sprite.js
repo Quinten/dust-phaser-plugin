@@ -59,10 +59,10 @@ class DustSprite extends Phaser.GameObjects.Image
         _.position = _.position.subtract(cameraVelocity);
 
         // wrapping
-        if (_.position.x > this.scene.cameras.main.width) _.position.x = 0;
-        if (_.position.x < 0) _.position.x = this.scene.cameras.main.width;
-        if (_.position.y > this.scene.cameras.main.height) _.position.y = 0;
-        if (_.position.y < 0) _.position.y = this.scene.cameras.main.height;
+        if (_.position.x > (this.scene.cameras.main.width + (this.width / 2))) _.position.x = -(this.width / 2);
+        if (_.position.x < -(this.width / 2)) _.position.x = this.scene.cameras.main.width + (this.width / 2);
+        if (_.position.y > (this.scene.cameras.main.height + (this.height / 2))) _.position.y = -(this.height / 2);
+        if (_.position.y < -(this.height / 2)) _.position.y = this.scene.cameras.main.height + (this.height / 2);
 
         // set position
         this.x = _.position.x;
