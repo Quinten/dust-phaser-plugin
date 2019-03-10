@@ -2,6 +2,8 @@
 
 a Phaser 3 plugin for floating dust particles
 
+The goal of this plugin is to provide an easy way to add 1x1 pixels that wander around the screen. This animation effect can give a little bit more life and polish to your pixelart scene.
+
 ### Install from npm
 
 ```
