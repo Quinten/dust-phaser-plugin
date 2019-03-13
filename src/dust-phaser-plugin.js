@@ -1,5 +1,5 @@
-import Phaser from "phaser";
-import DustSprite from "./dust-sprite";
+import Phaser from 'phaser';
+import DustSprite from './dust-sprite';
 
 class DustPhaserPlugin extends Phaser.Plugins.ScenePlugin
 {
@@ -11,7 +11,7 @@ class DustPhaserPlugin extends Phaser.Plugins.ScenePlugin
         this.systems = scene.sys;
 
         if (!this.systems.settings.isBooted) {
-            this.systems.events.once("boot", this.boot, this);
+            this.systems.events.once('boot', this.boot, this);
         }
     }
 
@@ -21,11 +21,11 @@ class DustPhaserPlugin extends Phaser.Plugins.ScenePlugin
         tint = 0xffffff
     } = {})
     {
-        if (!this.systems.textures.exists("dust")) {
+        if (!this.systems.textures.exists('dust')) {
             this.systems.textures.once('addtexture', () => {
                 this.addDust({count, alpha, tint});
             });
-            this.systems.textures.addBase64("dust", "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=");
+            this.systems.textures.addBase64('dust', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=');
         } else {
             this.addDust({count, alpha, tint});
         }
@@ -50,14 +50,14 @@ class DustPhaserPlugin extends Phaser.Plugins.ScenePlugin
 
     boot()
     {
-        this.systems.events.once("destroy", this.destroy, this);
+        this.systems.events.once('destroy', this.destroy, this);
 
         //console.log('DustPhaserPlugin booted...');
     }
 
     destroy()
     {
-        this.systems.events.off("boot", this.boot, this);
+        this.systems.events.off('boot', this.boot, this);
 
         this.scene = undefined;
         this.systems = undefined;

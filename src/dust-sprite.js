@@ -1,15 +1,15 @@
-import Phaser from "phaser";
+import Phaser from 'phaser';
 
 class DustSprite extends Phaser.GameObjects.Image
 {
     constructor(scene, x, y)
     {
-        super(scene, x, y, "dust");
+        super(scene, x, y, 'dust');
 
         this.scene = scene;
         scene.add.existing(this);
-        scene.events.on("update", this.update, this);
-        scene.events.once("shutdown", this.destroy, this);
+        scene.events.on('update', this.update, this);
+        scene.events.once('shutdown', this.destroy, this);
 
         this.behavior = {};
         this.behavior.position = new Phaser.Math.Vector2(x, y);
@@ -59,10 +59,18 @@ class DustSprite extends Phaser.GameObjects.Image
         _.position = _.position.subtract(cameraVelocity);
 
         // wrapping
-        if (_.position.x > (this.scene.cameras.main.width + (this.width / 2))) _.position.x = -(this.width / 2);
-        if (_.position.x < -(this.width / 2)) _.position.x = this.scene.cameras.main.width + (this.width / 2);
-        if (_.position.y > (this.scene.cameras.main.height + (this.height / 2))) _.position.y = -(this.height / 2);
-        if (_.position.y < -(this.height / 2)) _.position.y = this.scene.cameras.main.height + (this.height / 2);
+        if (_.position.x > (this.scene.cameras.main.width + (this.width / 2))) {
+            _.position.x = -(this.width / 2);
+        }
+        if (_.position.x < -(this.width / 2)) {
+            _.position.x = this.scene.cameras.main.width + (this.width / 2);
+        }
+        if (_.position.y > (this.scene.cameras.main.height + (this.height / 2))) {
+            _.position.y = -(this.height / 2);
+        }
+        if (_.position.y < -(this.height / 2)) {
+            _.position.y = this.scene.cameras.main.height + (this.height / 2);
+        }
 
         // set position
         this.x = _.position.x;
@@ -73,7 +81,7 @@ class DustSprite extends Phaser.GameObjects.Image
     destroy()
     {
         if (this.scene) {
-            this.scene.events.off("update", this.update, this);
+            this.scene.events.off('update', this.update, this);
         }
         super.destroy();
     }
