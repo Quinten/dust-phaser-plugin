@@ -1,6 +1,6 @@
 {
   "name": "dust-phaser-plugin",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "a Phaser 3 plugin for floating dust particles",
   "main": "src/index.js",
   "scripts": {
